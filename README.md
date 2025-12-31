@@ -65,9 +65,11 @@ Note: this script uses the ESM-1b model and may download weights on first run.
 
 ## 4) Inference (real data)
 
-The reference CSV `data/reference/train_unseen.csv` is included in the repo.
-Download the precomputed reference embeddings from https://doi.org/10.5281/zenodo.18109547
-and place the file at `data/reference/train_unseen_embeddings.pt`.
+Download the reference CSV and precomputed embeddings from https://doi.org/10.5281/zenodo.18110452
+and place them at:
+
+- `data/reference/train_unseen.csv`
+- `data/reference/train_unseen_embeddings.pt`
 
 Then run inference (the downloaded reference embeddings already include IDs and EC labels, so `--train_data` is optional):
 
