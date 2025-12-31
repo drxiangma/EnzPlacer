@@ -1,3 +1,4 @@
 data/reference/train_unseen_embeddings.pt
+data/reference/train_unseen.csv
 __pycache__/
 *.pyc
