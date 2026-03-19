@@ -37,7 +37,8 @@ python scripts/infer_knn.py \
   --out_csv predictions.csv
 ```
 
-Output: `predictions.csv` with columns `id, pred_ec`.
+Output: `predictions.csv` with columns `id, pred_ec, reliability_distance`.
+`reliability_distance` is the nearest-neighbor distance in EnzPlacer embedding space (smaller = more reliable).
 
 ## 3) Prepare query FASTA + ESM embeddings (real data)
 

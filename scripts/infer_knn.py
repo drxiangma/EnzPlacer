@@ -167,12 +167,15 @@ def main():
         smaller_is_better = True
 
     preds: List[str] = []
+    reliability_distances: List[float] = []
     for i in range(D.shape[0]):
         row = D[i]
         nn_idx = np.argsort(row)[: max(args.k, 1)]
         neigh_ids = [ref_ids[j] for j in nn_idx]
         neigh_ecs = [ref_ecs[j] for j in nn_idx]
         neigh_d = row[nn_idx].astype(np.float64)
+        # Distance to nearest reference in embedding space (lower is more reliable).
+        reliability_distances.append(float(neigh_d[0]))
 
         if args.distinct_ecs:
             neigh_ids, neigh_ecs, neigh_d = _distinct_by_ec(neigh_ids, neigh_ecs, neigh_d, k=args.k)
@@ -182,7 +185,7 @@ def main():
         pred = _vote(neigh_ecs, neigh_d, vote=args.vote)
         preds.append(pred)
 
-    out = pd.DataFrame({"id": q_ids, "pred_ec": preds})
+    out = pd.DataFrame({"id": q_ids, "pred_ec": preds, "reliability_distance": reliability_distances})
     out.to_csv(args.out_csv, index=False)
     print(f"Saved: {args.out_csv} | n={len(out)}")
 
