@@ -13,6 +13,10 @@ This repository provides an inference pipeline for the EnzPlacer model,
 which maps ESM mean embeddings (1280-d) into the EnzPlacer embedding space. The reference database is then
 used for the nearest-neighbor label transfer.
 
+## Data CSV files
+
+CSV files in the `data/` folder use the same three columns: `Entry`, `EC number`, and `Sequence`. The provided splits are: `test_unseen_experimental.csv` (Unseen Test), `test_unseen_exp_lt50.csv` (Unseen Test 50%), `test_unseen_exp_lt30.csv` (Unseen Test 30%), `test_unseen_exp_lt10.csv` (Unseen Test 10%), `test_seen_50.csv` (Seen Test 50%), `test_seen_30.csv` (Seen Test 30%), and `test_seen_10.csv` (Seen Test 10%). Training CSVs in `data/` follow the same schema (`train_unseen.csv` and `train_seen.csv`).
+
 ## 1) Installation
 
 ```bash
