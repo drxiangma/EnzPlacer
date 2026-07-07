@@ -1,7 +1,7 @@
 # EnzPlacer
 
 EnzPlacer is a contrastive learning approach for enzyme function prediction from sequence, introduced in
-"*How Not to be Seen: Predicting Unseen Enzyme Functions using Contrastive Learning*", accepted to the **ISMB 2026 proceedings** with a 14% acceptance rate. The key challenge we address
+"*How Not to be Seen: Predicting Unseen Enzyme Functions using Contrastive Learning*", accepted to the **ISMB 2026 proceedings** with a 16% acceptance rate. The key challenge we address
 is that many enzymes in newly sequenced genomes have functions not yet characterized, so their exact EC labels
 do not exist at training time. Rather than forcing a wrong label, EnzPlacer places sequences into the known
 functional landscape as accurately as possible, producing testable hypotheses for experimental follow-up.
