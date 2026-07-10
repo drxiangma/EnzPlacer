@@ -18,7 +18,7 @@ used for the nearest-neighbor label transfer.
 EnzPlacer was introduced in:
 
 **How Not to be Seen: Predicting Unseen Enzyme Functions using Contrastive Learning**  
-Xiang Ma, Parnal Joshi, Iddo Friedberg, and Qi Li.  
+Xiang Ma\*, Parnal Joshi, Iddo Friedberg, and Qi Li\*.  
 *Bioinformatics*, 2026, 42, btag215. ISMB Proceedings Supplement.  
 Paper: https://academic.oup.com/bioinformatics/article/42/Supplement_1/btag215/8726303  
 DOI: https://doi.org/10.1093/bioinformatics/btag215
