@@ -13,6 +13,16 @@ This repository provides an inference pipeline for the EnzPlacer model,
 which maps ESM mean embeddings (1280-d) into the EnzPlacer embedding space. The reference database is then
 used for the nearest-neighbor label transfer.
 
+## Paper
+
+EnzPlacer was introduced in:
+
+**How Not to be Seen: Predicting Unseen Enzyme Functions using Contrastive Learning**  
+Xiang Ma, Parnal Joshi, Iddo Friedberg, and Qi Li.  
+*Bioinformatics*, 2026, 42, btag215. ISMB Proceedings Supplement.  
+Paper: https://academic.oup.com/bioinformatics/article/42/Supplement_1/btag215/8726303  
+DOI: https://doi.org/10.1093/bioinformatics/btag215
+
 ## Data CSV files
 
 CSV files in the `data/` folder use the same three columns: `Entry`, `EC number`, and `Sequence`. The provided splits are: `test_unseen_experimental.csv` (Unseen Test), `test_unseen_exp_lt50.csv` (Unseen Test 50%), `test_unseen_exp_lt30.csv` (Unseen Test 30%), `test_unseen_exp_lt10.csv` (Unseen Test 10%), `test_seen_50.csv` (Seen Test 50%), `test_seen_30.csv` (Seen Test 30%), and `test_seen_10.csv` (Seen Test 10%). Training CSVs in `data/` follow the same schema (`train_unseen.csv` and `train_seen.csv`).
@@ -96,3 +106,20 @@ If `--query_embeddings_pt` is not provided, query embeddings are loaded from `--
 ## 5) License
 
 GPL-3.0-only (see `LICENSE`).
+
+## Citation
+
+If you use EnzPlacer, please cite:
+
+```bibtex
+@article{ma2026enzplacer,
+  title = {How Not to be Seen: Predicting Unseen Enzyme Functions using Contrastive Learning},
+  author = {Ma, Xiang and Joshi, Parnal and Friedberg, Iddo and Li, Qi},
+  journal = {Bioinformatics},
+  volume = {42},
+  pages = {btag215},
+  year = {2026},
+  note = {ISMB Proceedings Supplement},
+  doi = {10.1093/bioinformatics/btag215},
+  url = {https://academic.oup.com/bioinformatics/article/42/Supplement_1/btag215/8726303}
+}
