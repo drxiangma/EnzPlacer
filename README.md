@@ -9,9 +9,7 @@ functional landscape as accurately as possible, producing testable hypotheses fo
 Our model predicts the 1st, 2nd, and 3rd EC numbers for proteins whose 4th EC number was unseen during training,
 providing a narrowed and biologically meaningful functional context even when the precise function is unknown.
 
-This repository provides an inference pipeline for the EnzPlacer model,
-which maps ESM mean embeddings (1280-d) into the EnzPlacer embedding space. The reference database is then
-used for the nearest-neighbor label transfer.
+This repository provides an inference pipeline for EnzPlacer, which maps ESM mean embeddings (1280-d) into the EnzPlacer embedding space. The reference database is then used for nearest-neighbor label transfer. Trained checkpoints are provided for both the unseen-function setting, which is the primary focus of the paper, and the seen-function setting used for comparison.
 
 ## Paper
 
@@ -26,6 +24,17 @@ DOI: https://doi.org/10.1093/bioinformatics/btag215
 ## Data CSV files
 
 CSV files in the `data/` folder use the same three columns: `Entry`, `EC number`, and `Sequence`. The provided splits are: `test_unseen_experimental.csv` (Unseen Test), `test_unseen_exp_lt50.csv` (Unseen Test 50%), `test_unseen_exp_lt30.csv` (Unseen Test 30%), `test_unseen_exp_lt10.csv` (Unseen Test 10%), `test_seen_50.csv` (Seen Test 50%), `test_seen_30.csv` (Seen Test 30%), and `test_seen_10.csv` (Seen Test 10%). Training CSVs in `data/` follow the same schema (`train_unseen.csv` and `train_seen.csv`).
+
+## Model checkpoints
+
+Two trained EnzPlacer checkpoints are provided in the `checkpoints/` directory:
+
+| Checkpoint             | Training setting        | Intended use                                                                                                                                                  |
+| ---------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `EnzPlacer_unseen.pth` | Unseen-function setting | Primary EnzPlacer model used when the test EC4 functions are not present during training. Use with the corresponding `train_unseen` reference set.            |
+| `EnzPlacer_seen.pth`   | Seen-function setting   | Model used for the seen-function evaluation, where the test functions are represented during training. Use with the corresponding `train_seen` reference set. |
+
+The checkpoint and reference set should be matched: use the unseen checkpoint with the unseen training reference and the seen checkpoint with the seen training reference.
 
 ## 1) Installation
 
@@ -43,7 +52,7 @@ The repo contains a small mock reference TSV, a mock query FASTA, and mock preco
 python scripts/infer_knn.py \
   --train_data data/reference/mock_reference.tsv \
   --test_fasta data/query/mock_query.fasta \
-  --model checkpoints/EnzPlacer.pth \
+  --model checkpoints/EnzPlacer_unseen.pth \
   --reference_embeddings_pt data/reference/mock_reference_embeddings.pt \
   --query_embeddings_pt data/query/mock_query_embeddings.pt \
   --distance l2 --unit_norm_for_l2 \
@@ -92,7 +101,7 @@ Then run inference (the downloaded reference embeddings already include IDs and 
 python scripts/infer_knn.py \
   --train_data data/reference/train_unseen.csv \
   --test_fasta data/query/my_query.fasta \
-  --model checkpoints/EnzPlacer.pth \
+  --model checkpoints/EnzPlacer_unseen.pth \
   --reference_embeddings_pt data/reference/train_unseen_embeddings.pt \
   --query_embeddings_pt data/query/my_query_embeddings.pt \
   --distance l2 --unit_norm_for_l2 \
